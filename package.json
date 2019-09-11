@@ -1,9 +1,8 @@
 {
   "name": "Reservations",
-  "version": "",
   "description": "module for making reservations",
   "author": "Jason Chen",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
@@ -42,9 +41,10 @@
     "babel-loader": "^8.0.6",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "eslint": "^6.2.1",
+    "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
@@ -62,5 +62,16 @@
     "webfontloader": "^1.6.28",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
-  }
+  },
+  "version": "1.0.0",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FeastFinder/Reservations.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/FeastFinder/Reservations/issues"
+  },
+  "homepage": "https://github.com/FeastFinder/Reservations#readme"
 }

@@ -5,7 +5,7 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-// import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import moment from 'moment';
 
 import PartySize from './partySizeModule.jsx';
@@ -16,7 +16,7 @@ import BrandonTextLight from './fonts/BrandonText-Light.otf';
 import BrandonTextMedium from './fonts/BrandonText-Medium.otf';
 import BrandonTextBold from './fonts/BrandonText-Bold.otf';
 
-const GlobalStyle = styled.createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: Brandon-Text-Regular;
     src: url('${BrandonTextRegular}') format('opentype');
@@ -58,7 +58,6 @@ flex-direction: column;
 padding: 4%;
 margin-right: auto;
 margin-left: auto;
-MongoNetworkError: failed to connect to server [database:27017] on first connect [MongoNetworkError: getaddrinfo ENOTFOUND database database:27017
 `;
 
 const Reservation = styled.div`
@@ -296,7 +295,7 @@ class Reservations extends React.Component {
   }
 
   getListingData(listing = 'L1') {
-    return fetch(`http://54.67.39.70:3008/api/${listing}/reservations`, {
+    return fetch(`/api/${listing}/reservations`, {
       method: 'GET',
     })
       .then((res) => (

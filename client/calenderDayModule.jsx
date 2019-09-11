@@ -1,5 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import moment from 'moment';
 
 const CalenderTdCurrentMonth = styled.td`
@@ -41,7 +41,7 @@ color: #d8d9db;
 CalenderTdBeforeDayDiffMonth.displayName = 'CalenderTdBeforeDayDiffMonth';
 
 const CalenderDay = ({
- month, day, selectDate, openCalender, changeShownDate
+  month, day, selectDate, openCalender, changeShownDate,
 }) => {
   const currentMonth = <CalenderTdCurrentMonth onClick={(event) => { selectDate(event); openCalender(); changeShownDate(event); }} value={day.isoDate}>{day.thisDate}</CalenderTdCurrentMonth>;
   const notCurrentMonth = <CalenderTdNotCurrentMonth onClick={(event) => { selectDate(event); openCalender(); changeShownDate(event); }} value={day.isoDate}>{day.thisDate}</CalenderTdNotCurrentMonth>;
