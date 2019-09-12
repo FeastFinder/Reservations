@@ -29,4 +29,16 @@ app.get('/api/:id/reservations', (req, res) => {
     });
 });
 
+app.post('/api/:id/reservations', (req, res) => {
+  res.end();
+});
+
+app.put('/api/:id/reservations', (req, res) => {
+  res.end();
+});
+
+app.delete('/api/:id/reservations', (req, res) => {
+  res.end();
+});
+
 app.listen(port, () => { console.log(`argh matey we be arriving at port ${port}`); });
