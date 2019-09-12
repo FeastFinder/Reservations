@@ -60,7 +60,7 @@ GET /api/:id/reservations
   - retrieves reservation information for specified id
   - Returns an object if successful
 
-POST /api/reservations
+POST /api/:id/reservations
   - records a reservation to database
   - returns 200 code if successful
 
