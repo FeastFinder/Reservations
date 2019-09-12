@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database/Reservations', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/Reservations', { useNewUrlParser: true })
   .then(() => { console.log('Mango be connected'); })
   .catch((error) => { console.log('Mango tree have error ', error); });
 
@@ -15,6 +15,8 @@ const reservationSchema = new mongoose.Schema({
       Date: String,
       Seats: [
         {
+          SeatNumber: Number,
+          Hours: String,
           time: String,
           reservations: {
             open: Number,
@@ -26,7 +28,7 @@ const reservationSchema = new mongoose.Schema({
   ]
 });
 
-const ReservationDocument =  mongoose.model('Reservation', reservationSchema);
+const ReservationDocument = mongoose.model('Reservation', reservationSchema);
 
 const getListingData = (listing) => (
   ReservationDocument.find({ Listing: listing })
