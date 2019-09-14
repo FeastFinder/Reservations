@@ -63,8 +63,8 @@ GET /api/restaurants/:id/reservations
 POST /api/restaurants/:id/reservations
   - records a reservation to database
 
-PUT /api/restaurants/:id/reservation_id
+PUT /api/restaurants/:id/reservations/:reservation_id
   - updates reservation at specified id with new information
 
-DELETE /api/restaurants/:id/reservation_id
+DELETE /api/restaurants/:id/reservations/:reservation_id
   - deleted reservation at specified id
