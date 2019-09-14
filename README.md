@@ -56,18 +56,15 @@ npm install
 
 ### CRUD API Routes
 
-GET /api/:id/reservations
+GET /api/restaurants/:id/reservations
   - retrieves reservation information for specified id
   - Returns an object if successful
 
-POST /api/:id/reservations
+POST /api/restaurants/:id/reservations
   - records a reservation to database
-  - returns 200 code if successful
 
-PUT /api/:id/reservations
+PUT /api/restaurants/:id/reservation_id
   - updates reservation at specified id with new information
-  - returns a 200 code if successful
 
-DELETE /api/:id/reservations
+DELETE /api/restaurants/:id/reservation_id
   - deleted reservation at specified id
-  - returns 204 code if successful
