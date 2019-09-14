@@ -29,6 +29,10 @@ const getTimesAndSeats = () => {
   return dateInfo;
 };
 
+const getDates = () => {
+  // something
+};
+
 for (let i = 1; i < 5; i += 1) {
   const restaurant = {};
   restaurant.restaurant_id = i;
