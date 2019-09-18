@@ -25,3 +25,8 @@ build/
 dist/
 
 aws-keys.json
+
+DatesTable.csv
+reservationsTable.csv
+restaurantsTable.csv
+timeSlotsTable.csv
