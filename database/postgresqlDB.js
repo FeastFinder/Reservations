@@ -7,11 +7,12 @@ const pool = new Pool({
   port: 5432,
 });
 
-pool.query('INSERT INTO restaurant (id, total_seats) values(1, 10)', (error, results) => {
+// test query
+pool.query('SELECT * FROM time_slots T', (error, results) => {
   if (error) {
     throw error;
   } else {
-    console.log(('INSERTED'));
+    console.log((results.rows));
     pool.end();
   }
 });
