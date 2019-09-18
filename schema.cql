@@ -5,10 +5,17 @@ CREATE KEYSPACE reservations WITH REPLICATION = {'class':'SimpleStrategy', 'repl
 use reservations;
 
 CREATE TABLE restaurants (
-  restaurant_id INT,
-  seats INT,
+  id INT,
+  total_seats INT,
+  PRIMARY KEY (id)
+)
+
+CREATE TABLE reservations (
+  id INT-> increment,
+  restaurant_id,
   date date,
-  time_slot time,
-  open INT,
-  PRIMARY KEY ((restaurant_id, date), time_slot , open)
+  time time,
+  res_name TEXT,
+  seats INT,
+  PRIMARY KEY ((restaurant_id, date), time)
 );
