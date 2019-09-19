@@ -21,16 +21,16 @@ const curDate = moment().format().slice(0, 10);
 
 const generateRestaurants = () => {
   const writeRestaurantsTable = fs.createWriteStream('database/restaurantsTable.csv');
-  writeRestaurantsTable.write('id,total_seats\n', 'utf8');
+  writeRestaurantsTable.write('total_seats\n', 'utf8');
   // const restaurants = [];
   for (let i = 0; i < 10000; i += 1) {
     // const curRest = {};
     // curRest.id = i;
     // curRest.total_seats = Math.floor(Math.random() * 10) + 51;
     // restaurants.push(curRest);
-    const id = i;
+    // const id = i;
     const total_seats = Math.floor(Math.random() * 10) + 81;
-    writeRestaurantsTable.write(`${id},${total_seats}\n`);
+    writeRestaurantsTable.write(`${total_seats}\n`);
     // client.query(`INSERT INTO restaurants (id, total_seats) values (${i}, ${total_seats}`, (err, res) => { console.log('completed', i); })
   }
   writeRestaurantsTable.end();
@@ -39,16 +39,16 @@ const generateRestaurants = () => {
 
 const generateDates = () => {
   const writeDatesTable = fs.createWriteStream('database/datesTable.csv');
-  writeDatesTable.write('id,date\n', 'utf8');
+  writeDatesTable.write('date\n', 'utf8');
   // const dates = [];
   for (let i = 0; i < 90; i += 1) {
     // const curDate = {};
     // curDate.id = i;
     // curDate.date = moment().add(i - 1, 'day').format().slice(0, 10);
     // dates.push(curDate);
-    const id = i;
+    // const id = i;
     const date = moment().add(i - 1, 'day').format().slice(0, 10);
-    writeDatesTable.write(`${id},${date}\n`);
+    writeDatesTable.write(`${date}\n`);
   }
   writeDatesTable.end();
   // return dates;
@@ -57,14 +57,14 @@ const generateDates = () => {
 
 const generateTimes = () => {
   const writeTimeSlotsTable = fs.createWriteStream('database/timeSlotsTable.csv');
-  writeTimeSlotsTable.write('id,time\n', 'utf8');
+  writeTimeSlotsTable.write('time\n', 'utf8');
   // const time_slots = [];
   let curTime = '12:30:00';
   for (let i = 0; i < 10; i += 1) {
     // const time_slot = {};
     // time_slot.id = i;
     // time_slot.time = curTime;
-    const id = i;
+    // const id = i;
     const split = curTime.split(':');
     if (split[1] === '00') {
       split[1] = '30';
@@ -74,7 +74,7 @@ const generateTimes = () => {
     }
     curTime = split.join(':');
     // time_slots.push(time_slot);
-    writeTimeSlotsTable.write(`${id},${curTime}\n`);
+    writeTimeSlotsTable.write(`${curTime}\n`);
   }
   // return time_slots;
   writeTimeSlotsTable.end();
@@ -82,21 +82,21 @@ const generateTimes = () => {
 
 const generateReservations = () => {
   const writeReservationsTable = fs.createWriteStream('database/reservationsTable.csv');
-  writeReservationsTable.write('id,res_name,seats,restaurant_id,date_id,time_slot_id\n', 'utf8');
+  writeReservationsTable.write('res_name,seats,restaurant_id,date_id,time_slot_id\n', 'utf8');
   function writeTenMillionReservations(writer, encoding, callback) {
     let i = 10000000; // 10 mil
     let id = 0;
     function write() {
       let ok = true;
       do {
-        const res_name = faker.name.firstName();
-        const seats = Math.ceil(Math.random() * 10);
-        const restaurant_id = Math.floor(Math.random() * 10000);
-        const date_id = Math.floor(Math.random() * 90);
-        const time_slot_id = Math.floor(Math.random() * 10);
-        const data = `${id},${res_name},${seats},${restaurant_id},${date_id},${time_slot_id}\n`;
         i -= 1;
         id += 1;
+        const res_name = faker.name.firstName();
+        const seats = Math.ceil(Math.random() * 10);
+        const restaurant_id = Math.ceil(Math.random() * 10000);
+        const date_id = Math.ceil(Math.random() * 90);
+        const time_slot_id = Math.ceil(Math.random() * 10);
+        const data = `${res_name},${seats},${restaurant_id},${date_id},${time_slot_id}\n`;
         if (id % 10000 === 0) {
           console.log(id);
         }
