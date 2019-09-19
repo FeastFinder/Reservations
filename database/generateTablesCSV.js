@@ -1,6 +1,8 @@
 const getData = require('./generateDataSDC.js');
 const pg = require('./postgresqlDB.js');
 
+// Below inclues scripts that were ran in postgres to copy vsc files to my database
+
 // COPY restaurants (total_seats) FROM '/Users/ryanzhong/Documents/HRSF122/SDC/Reservations/database/restaurantsTable.csv' DELIMITER ',' CSV HEADER;
 
 // COPY dates (date) FROM '/Users/ryanzhong/Documents/HRSF122/SDC/Reservations/database/datesTable.csv' DELIMITER ',' CSV HEADER;
