@@ -273,29 +273,30 @@ class Reservations extends React.Component {
   componentDidMount() {
     const loc = window.location.pathname;
     const id = loc.split('/')[1];
-    this.getListingData(id)
+    const initdate = moment().local().format().slice(0, 10);
+    this.getListingData(id, initdate)
       .then((data) => {
         this.listingData = data;
-      })
-      .then(() => {
-        const currentDay = moment().local().format().slice(0, 10);
-        const currentMonth = moment().local().format('MMMM YYYY');
-        const dayTimes = this.listingData.filter((day) => {
-          const daysFile = day.Date.slice(0, 10);
-          return daysFile === currentDay;
-        });
-        this.setState({
-          date: currentDay,
-          month: { month: currentMonth, ISO: moment().local().format() },
-          hours: dayTimes[0].Hours,
-          time: moment().local().startOf('day').format(),
-        });
-        this.getDay();
       });
+    // .then(() => {
+    //   const currentDay = moment().local().format().slice(0, 10);
+    //   const currentMonth = moment().local().format('MMMM YYYY');
+    //   const dayTimes = this.listingData.filter((day) => {
+    //     const daysFile = day.Date.slice(0, 10);
+    //     return daysFile === currentDay;
+    //   });
+    //   this.setState({
+    //     date: currentDay,
+    //     month: { month: currentMonth, ISO: moment().local().format() },
+    //     hours: dayTimes[0].Hours,
+    //     time: moment().local().startOf('day').format(),
+    //   });
+    //   this.getDay();
+    // });
   }
 
-  getListingData(listing = 'L1') {
-    return fetch(`/api/${listing}/reservations`, {
+  getListingData(listing = '1', date) {
+    return fetch(`/api/restaurant/${listing}/reservations/`, {
       method: 'GET',
     })
       .then((res) => (
