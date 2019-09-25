@@ -1,43 +1,77 @@
+require('newrelic');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
 const compression = require('compression');
+const moment = require('moment');
 
 
 const app = express();
 const port = 3002;
-const database = require('../database/database.js');
+// const database = require('../database/database.js');
+const database = require('../database/postgresqlDB.js');
 
 app.use(cors());
 app.use(morgan());
 app.use(compression());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use('/:id/reservations', express.static('public'));
 
 app.use(express.static('public'));
 
-app.get('/api/:id/reservations', (req, res) => {
+app.get('/api/reservations/:id', (req, res) => {
   const param = req.params.id;
-  database.getListingData(param)
-    .then((data) => {
-      const dataForListing = data[0].Dates.slice();
-      res.send(dataForListing);
-    })
-    .catch((err) => {
-      console.log('Error with retriving data for listing', err);
-    });
+  database.getRes(param, (err, data) => {
+    if (err) {
+      console.log(err);
+      // throw err;
+    }
+    res.send(data);
+  });
 });
 
-app.post('/api/:id/reservations', (req, res) => {
+app.get('/api/restaurant/:id/:date/reservations/', (req, res) => {
+  const param = req.params.id;
+  const day = req.params.date;
+  // console.log(day);
+  database.getListingData(param, day, (err, data) => {
+    if (err) {
+      console.log(err);
+      // throw err;
+    }
+    res.send(data);
+  });
+  // keeping lines below in case I want to run old database to see data structure
+  // .then((data) => {
+  //   const dataForListing = data[0].Dates.slice();
+  //   res.send(dataForListing);
+  // })
+  // .catch((err) => {
+  //   console.log('Error with retriving data for listing', err);
+  // });
+});
+
+app.post('/api/restaurant/:id/reservations', (req, res) => {
+  const param = req.params.id;
+  console.log(req.body);
+  database.postNewRes(param, req.body);
   res.end();
 });
 
-app.put('/api/:id/reservations', (req, res) => {
+app.put('/api/restaurant/:id/reservations/:reservation_id', (req, res) => {
+  const param = req.params.reservation_id;
+  database.updateRes(req.body);
   res.end();
 });
 
-app.delete('/api/:id/reservations', (req, res) => {
+app.delete('/api/restaurant/:id/reservations/:reservation_id', (req, res) => {
+  // const param = req.params.id;
+  const param = req.params.reservation_id;
+  database.deleteRes(param);
   res.end();
 });
 
