@@ -14,6 +14,8 @@ const pg = require('./postgresqlDB.js');
 // Create a index for postgres
 // CREATE UNIQUE INDEX res_idx ON reservations (restaurant_id,date_id);
 
+// CREATE INDEX restaurant_idx ON reservations (restaurant_id);
+
 
 getData.generateRestaurants();
 getData.generateDates();

@@ -17,7 +17,26 @@ const pool = new Pool({
 //   }
 // });
 
-const getListingData = (listing, cb) => {
+const getRes = (listing, cb) => {
+  const queryString = `
+    SELECT *
+    FROM
+      reservations
+    WHERE
+      res_id = ${listing}
+  `;
+
+  pool.query(queryString, (err, data) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    // console.log('data', data.fields);
+    cb(null, data.rows);
+  });
+};
+
+const getListingData = (listing, day, cb) => {
   const queryString = `
     SELECT
       res_id,
@@ -27,9 +46,16 @@ const getListingData = (listing, cb) => {
       total_seats,
       date,
       time
-    FROM reservations R
-    INNER JOIN restaurants E ON E.id = R.restaurant_id
-    INNER JOIN dates D ON D.id = R.date_id AND E.id = ${listing} INNER JOIN time_slots T ON T.id = R.time_slot_id
+    FROM
+      reservations R
+    INNER JOIN
+      restaurants E ON E.id = R.restaurant_id
+    INNER JOIN
+      dates D ON D.id = R.date_id
+      AND R.restaurant_id = ${listing}
+      AND R.date_id = ${day}
+    INNER JOIN
+      time_slots T ON T.id = R.time_slot_id
   `;
   pool.query(queryString, (err, data) => {
     if (err) {
@@ -102,6 +128,7 @@ module.exports = {
   postNewRes,
   updateRes,
   deleteRes,
+  getRes,
 };
 
 // try to implement date for query so it doesn't take too long

@@ -23,13 +23,25 @@ app.use('/:id/reservations', express.static('public'));
 
 app.use(express.static('public'));
 
-app.get('/api/restaurant/:id/reservations/', (req, res) => {
+app.get('/api/reservations/:id', (req, res) => {
   const param = req.params.id;
-  // const day = req.params.date;
-  // console.log(day);
-  database.getListingData(param, (err, data) => {
+  database.getRes(param, (err, data) => {
     if (err) {
       console.log(err);
+      // throw err;
+    }
+    res.send(data);
+  });
+});
+
+app.get('/api/restaurant/:id/:date/reservations/', (req, res) => {
+  const param = req.params.id;
+  const day = req.params.date;
+  // console.log(day);
+  database.getListingData(param, day, (err, data) => {
+    if (err) {
+      console.log(err);
+      // throw err;
     }
     res.send(data);
   });
