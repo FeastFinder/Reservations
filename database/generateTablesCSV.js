@@ -1,6 +1,8 @@
 const getData = require('./generateDataSDC.js');
 const pg = require('./postgresqlDB.js');
 
+// Below inclues scripts that were ran in postgres to copy vsc files to my database
+
 // COPY restaurants (total_seats) FROM '/Users/ryanzhong/Documents/HRSF122/SDC/Reservations/database/restaurantsTable.csv' DELIMITER ',' CSV HEADER;
 
 // COPY dates (date) FROM '/Users/ryanzhong/Documents/HRSF122/SDC/Reservations/database/datesTable.csv' DELIMITER ',' CSV HEADER;
@@ -11,6 +13,8 @@ const pg = require('./postgresqlDB.js');
 
 // Create a index for postgres
 // CREATE UNIQUE INDEX res_idx ON reservations (restaurant_id,date_id);
+
+// CREATE INDEX restaurant_idx ON reservations (restaurant_id);
 
 
 getData.generateRestaurants();
