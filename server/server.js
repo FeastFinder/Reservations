@@ -45,6 +45,7 @@ app.get('/api/restaurant/:id/:date/reservations/', (req, res) => {
     }
     res.send(data);
   });
+  // keeping lines below in case I want to run old database to see data structure
   // .then((data) => {
   //   const dataForListing = data[0].Dates.slice();
   //   res.send(dataForListing);

@@ -1,3 +1,4 @@
+// commented out below to allow proxy to work
 // /* eslint-disable import/extensions */
 // // /* eslint-disable import/no-extraneous-dependencies */
 // import React from 'react';

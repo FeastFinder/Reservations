@@ -278,6 +278,8 @@ class Reservations extends React.Component {
       .then((data) => {
         this.listingData = data;
       });
+
+    // keeping lines below in case I want to run old database to see data structure
     // .then(() => {
     //   const currentDay = moment().local().format().slice(0, 10);
     //   const currentMonth = moment().local().format('MMMM YYYY');

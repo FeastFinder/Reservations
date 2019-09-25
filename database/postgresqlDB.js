@@ -7,16 +7,6 @@ const pool = new Pool({
   port: 5432,
 });
 
-// test query
-// pool.query('SELECT * FROM time_slots T', (error, results) => {
-//   if (error) {
-//     throw error;
-//   } else {
-//     console.log((results.rows));
-//     pool.end();
-//   }
-// });
-
 const getRes = (listing, cb) => {
   const queryString = `
     SELECT *
@@ -31,7 +21,6 @@ const getRes = (listing, cb) => {
       console.log(err);
       return;
     }
-    // console.log('data', data.fields);
     cb(null, data.rows);
   });
 };
