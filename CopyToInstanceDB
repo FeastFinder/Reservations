@@ -1,0 +1,7 @@
+\COPY restaurants (total_seats) FROM '/home/ec2-user/temp/restaurantsTable.csv' DELIMITER ',' CSV HEADER;
+
+\COPY dates (date) FROM '/home/ec2-user/temp/datesTable.csv' DELIMITER ',' CSV HEADER;
+
+\COPY time_slots (time) FROM '/home/ec2-user/temp/timeSlotsTable.csv' DELIMITER ',' CSV HEADER;
+
+\COPY reservations(res_name, seats, restaurant_id, date_id, time_slot_id) FROM '/home/ec2-user/temp/reservationsTable.csv' DELIMITER ',' CSV HEADER;

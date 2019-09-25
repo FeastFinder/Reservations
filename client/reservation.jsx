@@ -277,28 +277,28 @@ class Reservations extends React.Component {
     this.getListingData(id, initdate)
       .then((data) => {
         this.listingData = data;
-      });
+      })
 
     // keeping lines below in case I want to run old database to see data structure
-    // .then(() => {
-    //   const currentDay = moment().local().format().slice(0, 10);
-    //   const currentMonth = moment().local().format('MMMM YYYY');
-    //   const dayTimes = this.listingData.filter((day) => {
-    //     const daysFile = day.Date.slice(0, 10);
-    //     return daysFile === currentDay;
-    //   });
-    //   this.setState({
-    //     date: currentDay,
-    //     month: { month: currentMonth, ISO: moment().local().format() },
-    //     hours: dayTimes[0].Hours,
-    //     time: moment().local().startOf('day').format(),
-    //   });
-    //   this.getDay();
-    // });
+      .then(() => {
+        const currentDay = moment().local().format().slice(0, 10);
+        const currentMonth = moment().local().format('MMMM YYYY');
+        const dayTimes = this.listingData.filter((day) => {
+          const daysFile = day.Date.slice(0, 10);
+          return daysFile === currentDay;
+        });
+        this.setState({
+          date: currentDay,
+          month: { month: currentMonth, ISO: moment().local().format() },
+          hours: dayTimes[0].Hours,
+          time: moment().local().startOf('day').format(),
+        });
+        this.getDay();
+      });
   }
 
   getListingData(listing = '1', date) {
-    return fetch(`/api/restaurant/${listing}/reservations/`, {
+    return fetch(`/api/restaurant/${listing}/0/reservations/`, {
       method: 'GET',
     })
       .then((res) => (
