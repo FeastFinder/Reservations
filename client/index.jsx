@@ -7,4 +7,4 @@ import WebFont from 'webfontloader';
 import Reservations from './reservation.jsx';
 
 
-ReactDOM.render(<Reservations />, document.getElementById('Reservations'));
+// ReactDOM.render(<Reservations />, document.getElementById('Reservations'));
