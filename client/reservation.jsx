@@ -272,7 +272,7 @@ class Reservations extends React.Component {
 
   componentDidMount() {
     const loc = window.location.pathname;
-    const id = loc.split('/')[1];
+    const id = loc.split('/')[2];
     const initdate = moment().local().format().slice(0, 10);
     this.getListingData(id, initdate)
       .then((data) => {

@@ -19,7 +19,7 @@ app.use(morgan());
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/:id/reservations', express.static('public'));
+app.use('/restaurant/:id/reservations', express.static('public'));
 
 app.use(express.static('public'));
 
